@@ -1,0 +1,16 @@
+<div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item" [ngClass]="{active: situacao === 'nao-lido'}">
+          <a class="nav-link" (click)="escolherSituacao('nao-lido')" style="cursor: pointer">Todos</a>
+        </li>
+        <li class="nav-item" [ngClass]="{active: situacao === 'lendo'}">
+          <a class="nav-link" (click)="escolherSituacao('lendo')" style="cursor: pointer">Lendo</a>
+        </li>
+        <li class="nav-item" [ngClass]="{active: situacao === 'lido'}">
+          <a class="nav-link" (click)="escolherSituacao('lido')" style="cursor: pointer">Lidos</a>
+        </li>
+    </ul>
+
+    <app-list [livros]="getLivros()" (situacaoEscolhida)="onEscolherSituacao($event)"></app-list>
+
+</div>
