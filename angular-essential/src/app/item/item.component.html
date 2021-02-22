@@ -3,9 +3,24 @@
     <h5 class="mb-1">{{livro.titulo}}</h5>
     <small>3 days ago</small>
     </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small>Donec id elit non mi porta.</small>
 
-    <button class="btn btn-primary" (click)="alterarSitucao('lendo')">Lendo</button>
-    <button class="btn btn-danger" (click)="alterarSitucao('lido')">Lido</button>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{livro.capa}}" style="width: 150px; height: 220px;"/>
+        </div>
+        <div class="col-md-9">
+            <p class="mb-1">
+                {{livro.descricao}}
+            </p>
+        </div>
+        <div class="col-md-12">
+            <small>J.R.R. Tolkien.</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-secondary" (click)="alterarSitucao('lendo')">Lendo</button>
+        <button class="btn btn-info" (click)="alterarSitucao('lido')">Lido</button>
+    </div>
+    
 </a>

@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-
+import {LivrosService} from '../livros-service';
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.css']
+  styleUrls: ['./tabs.component.css'],
+  providers: [LivrosService]
 })
 export class TabsComponent implements OnInit {
 
-  livros = [
-    {titulo: 'O Hobit', situacao: ''},
-    {titulo: 'O Senhor dos Anéis, O Retorno do Rei', situacao: ''}
-  ]
+  livros = [];
 
   situacao = 'nao-lido';
 
-  constructor() { }
+  livrosService: LivrosService;
+
+  constructor(_livrosService: LivrosService) {
+    this.livrosService = _livrosService;
+  }
 
   ngOnInit(): void {
   }
@@ -23,23 +25,9 @@ export class TabsComponent implements OnInit {
     this.situacao = _situcacao;
   }
 
-  onEscolherSituacao(_livro){
-    const position = this.livros.findIndex((l) => {
-      return l.titulo === _livro.titulo;
-    })
-
-    this.livros[position].situacao = _livro.situacao;
-  }
-
   getLivros(){
-    if(this.situacao == 'nao-lido'){
-      return this.livros.slice();
-    }
-
-    return this.livros.filter((_livro)=>{
-      return _livro.situacao === this.situacao;
-    })
-    
+    this.livros = this.livrosService.getLivros(this.situacao);
+    return this.livros;
   }
 
 }
