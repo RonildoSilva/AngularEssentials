@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {LivrosService} from '../livros-service';
 @Component({
   selector: 'app-item',
@@ -9,7 +9,6 @@ import {LivrosService} from '../livros-service';
 export class ItemComponent implements OnInit {
 
   @Input() livro;
-  @Output() situacaoEscolhida = new EventEmitter<{titulo: string, situacao: string}>();
 
   livrosService: LivrosService;
 
@@ -20,13 +19,9 @@ export class ItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //onAssign
-  alterarSitucao(_situcacao){
-    //this.livro.situacao = _situcacao;
-    //this.situacaoEscolhida.emit({titulo: this.livro.titulo, situacao: _situcacao});
-    
+  alterarSitucao(_situcacao){    
     this.livrosService.onEscolherSituacao({titulo: this.livro.titulo, situacao: _situcacao});
-
+    console.log(_situcacao);
   }
 
 }

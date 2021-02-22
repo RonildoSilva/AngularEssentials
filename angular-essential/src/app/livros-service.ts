@@ -1,3 +1,7 @@
+import { Injectable } from "@angular/core";
+import { LogService } from "./log.service";
+
+@Injectable()
 export class LivrosService {
 
     private livros = [
@@ -10,6 +14,11 @@ export class LivrosService {
         {titulo: 'O Senhor dos Anéis, O Retorno do Rei', situacao: '', capa:'https://images-na.ssl-images-amazon.com/images/I/71+4uDgt8JL.jpg', descricao: 'A guerra entre os Povos Livres da Terra-média e Sauron, o Senhor Sombrio da terra de Mordor, chega a seu clímax neste terceiro volume do romance O Senhor dos Anéis. As batalhas grandiosas que estão prestes a acontecer, no entanto, são apenas o pano de fundo para o verdadeiro drama: a missão quase suicida dos hobbits Frodo e Sam, que tentam destruir o Um Anel, fonte do poder de Sauron, infiltrando-se no coração do território do Inimigo. '}
       ];
 
+    private logService: LogService;
+
+    constructor(_logService: LogService){
+        this.logService = _logService;
+    }
 
     getLivros(situacao){
         if(situacao == 'nao-lido'){
@@ -23,10 +32,14 @@ export class LivrosService {
     }
 
     onEscolherSituacao(_livro){
-        const position = this.livros.findIndex((l) => {
-          return l.titulo === _livro.titulo;
+        const position = this.livros.findIndex((lv) => {
+          return lv.titulo === _livro.titulo;
         })
     
         this.livros[position].situacao = _livro.situacao;
-      }
+        
+        console.log(this.livros);
+        
+        this.logService.writeLog('Mudanca de estado: ' + _livro.titulo + ' para ' + _livro.situacao);
+    }
 }

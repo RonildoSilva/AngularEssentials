@@ -21,8 +21,8 @@ export class TabsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  escolherSituacao(_situcacao){
-    this.situacao = _situcacao;
+  escolherSituacao(situacao){
+    this.situacao = situacao;
   }
 
   getLivros(){

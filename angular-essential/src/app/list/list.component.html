@@ -1,6 +1,6 @@
 <div class="list-group">
-    <app-item *ngFor="let livro of livros" 
-    [livro]="livro"
-    (situacaoEscolhida)="onSituacaoEscolhida($event)">
+    <app-item 
+    *ngFor="let livro of livros" 
+    [livro]="livro">
     </app-item>
 </div>
